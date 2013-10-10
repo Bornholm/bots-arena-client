@@ -1,0 +1,25 @@
+{
+  "name": "bots-arena-client",
+  "description": "Bots Arena Client =================",
+  "version": "0.0.0",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bornholm/bots-arena-client.git"
+  },
+  "author": "",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/Bornholm/bots-arena-client/issues"
+  },
+  "window": {
+    "title": "Bots Arena Client",
+    "toolbar": true,
+    "frame": true,
+    "width": 800,
+    "height": 600
+  }
+}
