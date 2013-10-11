@@ -21,5 +21,8 @@
     "frame": true,
     "width": 800,
     "height": 600
+  },
+  "dependencies": {
+    "armature": "0.0.2"
   }
 }

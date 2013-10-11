@@ -1,3 +1,18 @@
+var GameClient = require('./lib/game-client.js');
+
+var editor =  
+
+var gameClient = new GameClient();
+
+gameClient.initialize(function(err) {
+  if(err) {
+    gameClient.logger.error(err);
+    process.exit(1);
+  }
+  gameClient.logger.log('Game client started !')
+});
+
+
 var fs = require('fs');
 
 var document = window.document;
