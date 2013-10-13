@@ -1,39 +1,38 @@
+var document = window.document;
+
+// Init game client
+
 var GameClient = require('./lib/game-client.js');
-
-var editor =  
-
 var gameClient = new GameClient();
+
+// Init game view
+
+var GameView = require('./lib/game-view.js');
+var gameView = new GameView(gameClient);
+var gridEl = document.getElementById('grid');
+
+gridEl.appendChild(gameView.getView());
 
 gameClient.initialize(function(err) {
   if(err) {
-    gameClient.logger.error(err);
+    gameClient.logger.error(err.stack);
     process.exit(1);
   }
-  gameClient.logger.log('Game client started !')
+  gameView.startRendering();
+  gameClient.logger.log('Game client started !');
 });
 
 
 var fs = require('fs');
-
-var document = window.document;
 var CodeMirror = window.CodeMirror;
-var PIXI = window.PIXI;
-
 var editorEl = document.getElementById('editor');
-var gridEl = document.getElementById('grid');
-
-var renderer = new PIXI.WebGLRenderer(480, 360); 
-
-gridEl.appendChild(renderer.view);
 
 var editor = CodeMirror(editorEl, {
-  value: fs.readFileSync('./lib/util/default-bot.js', 'utf8'),
+  value: fs.readFileSync('./lib/util/default-bot-code.js', 'utf8'),
   theme: 'lesser-dark',
   tabSize: 2,
   lineNumbers: true
 });
-
-
 
 var codeExport;
 var game = {};
