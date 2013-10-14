@@ -1,38 +1,22 @@
 var document = window.document;
-
-// Init game client
-
+var getById = document.getElementById.bind(document);
 var GameClient = require('./lib/game-client.js');
-var gameClient = new GameClient();
 
-// Init game view
-
-var GameView = require('./lib/game-view.js');
-var gameView = new GameView(gameClient);
-var gridEl = document.getElementById('grid');
-
-gridEl.appendChild(gameView.getView());
+var gameClient = new GameClient({
+  viewContainer: getById('game-view'),
+  editorContainer: getById('editor')
+});
 
 gameClient.initialize(function(err) {
   if(err) {
     gameClient.logger.error(err.stack);
     process.exit(1);
   }
-  gameView.startRendering();
   gameClient.logger.log('Game client started !');
 });
 
 
-var fs = require('fs');
-var CodeMirror = window.CodeMirror;
-var editorEl = document.getElementById('editor');
-
-var editor = CodeMirror(editorEl, {
-  value: fs.readFileSync('./lib/util/default-bot-code.js', 'utf8'),
-  theme: 'lesser-dark',
-  tabSize: 2,
-  lineNumbers: true
-});
+/*var fs = require('fs');
 
 var codeExport;
 var game = {};
@@ -53,4 +37,4 @@ editor.on('change', function() {
   evalCode(editor.getValue());
 });
 
-evalCode(editor.getValue());
+evalCode(editor.getValue());*/
